@@ -1,0 +1,35 @@
+<div class="hero-unit">
+  <div class="fb-like pull-right" data-href="http://http://epeupc-twitsort.herokuapp.com/" data-layout="button_count" data-show-faces="false"></div>          
+  <h1>TwitSort</h1>
+  <p>Realiza un sorteo entre usuarios de twitter de manera sencilla. Solo ingresa un hashtag y TwitSort buscará los usuarios que han twitteado utilizando ese hashtag y eligirá un ganador al azar.</p>  
+  <form id="search-form" action="/search">
+    <input type="text" name="hashtag" class="required" value="<%= session[:hashtag] %>">&nbsp;
+    <input type="submit" class="btn primary" value="Buscar" />&nbsp;<% if @error %><div class="error"><%= @error %></div><% end %>    
+  </form>
+</div>
+
+<% if session[:users] %>
+<div class="row">
+  <div class="span8">
+    <p class="message-results"><strong><%= session[:users].count %></strong> usuarios han twitteado usando el hashtag <%= hashtag_link(session[:hashtag]) %>:</p>
+    <ul>
+      <% session[:users].each do |user| %>
+      <li>
+        <%= twitter_user_link(user) %>
+      </li>
+      <% end %>
+    </ul>
+  </div>
+  <div class="span7">
+    <div class="options">
+      <button id="button-sortear" class="btn primary">Sortear</a>
+    </div>
+    <p>
+      <div id="div-results" class="alert-message block-message success">
+        <h2>El ganador es:</h2>
+        <p><span id="winner" /></p>
+      </div>
+    </p>
+  </div>
+</div>
+<% end %>
