@@ -8,14 +8,14 @@ require 'capybara'
 require 'capybara/cucumber'
 require 'rspec'
 
-Capybara.app = twitsort
+Capybara.app = Twitsort
 
-class twitsortWorld
+class TwitsortWorld
   include Capybara::DSL
   include RSpec::Expectations
   include RSpec::Matchers
 end
 
 World do
-  twitsortWorld.new
+  TwitsortWorld.new
 end

@@ -4,7 +4,11 @@ require "sinatra/reloader" if development?
 require 'erb'
 require 'twitter'
 
-enable :sessions, :logging
+
+
+class Twitsort < Sinatra::Base
+
+  enable :sessions, :logging
 
   helpers do
     def hashtag_link(hashtag)
@@ -51,4 +55,5 @@ enable :sessions, :logging
     
   end
   #start the server if ruby file executed directly
-  #run! if app_file == $0
+  run! if app_file == $0
+end
