@@ -6,6 +6,8 @@ require 'twitter'
 
 enable :sessions, :logging
 
+
+
 helpers do
   def hashtag_link(hashtag)
     hashtag1 = hashtag.delete "#"
@@ -37,5 +39,16 @@ get '/search' do
 end
 
 get '/raffle' do 
-  twitter_user_link(session[:users].shuffle.first)
+  ganador = session[:users].shuffle.first
+
+  Twitter.configure do |config|
+  config.consumer_key = 'fODX2IwwdAdPpqCwa8FPQ'
+  config.consumer_secret = 'GU8PCHZo3wxFfNv09ewiDut9Hu29J6fRyuAnXPaeY'
+  config.oauth_token = '820628143-1z9xgsEzpz4iVrEfhD4pUNg8vo3HEuNM8AQqUZFl'
+  config.oauth_token_secret = 'kYfBodu3VXsZM4GJDXQPqCZZsgchrPrHnoGvtNWeY'
+  end
+
+  Twitter.update("Hola @" + ganador + " has salido ganad@r de nuestro sorteo. Contactate con nosotros para enviarte tu premio!")
+
+  twitter_user_link(ganador)
 end
