@@ -6,7 +6,7 @@ require 'twitter'
 
 enable :sessions, :logging
 
-class twitsort < Sinatra::Base
+class Twitsort < Sinatra::Base
 
   helpers do
     def hashtag_link(hashtag)
