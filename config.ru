@@ -1,4 +1,2 @@
-require 'rubygems'
-require File.join(File.dirname(__FILE__), 'lib/twit_sort.rb')
-
-run Twitsort
+require './lib/twit_sort'
+run Sinatra::Application
